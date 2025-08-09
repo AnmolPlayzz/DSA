@@ -1,0 +1,41 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build active file (C++)",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-std=c++17",
+        "-O2",
+        "-Wall",
+        "${file}",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}.out"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "run active file with redirection",
+      "type": "shell",
+      "command": "/bin/bash",
+      "args": [
+        "-lc",
+        "\"${fileDirname}/${fileBasenameNoExtension}.out\" < \"${workspaceFolder}/input.txt\" > \"${workspaceFolder}/output.txt\""
+      ],
+      "dependsOn": "build active file (C++)",
+      "group": { "kind": "test", "isDefault": true },
+      "problemMatcher": [] ,
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+# Exclude .out files only (not directories ending in .out)
+*.out
+!*.out/
+!**/*.out/
